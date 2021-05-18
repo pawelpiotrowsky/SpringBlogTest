@@ -1,13 +1,8 @@
-package com.example.SpringBlogTest.Resource;
+package com.example.SpringBlogTest.resource;
 
-import com.example.SpringBlogTest.Service.UserService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.example.SpringBlogTest.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.awt.*;
 
 @RestController
 @RequestMapping("/user")

@@ -1,7 +1,8 @@
-package com.example.SpringBlogTest.User;
+package com.example.SpringBlogTest.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +21,7 @@ public class User {
     private String email;
     private Long number;
     private String password;
+    private String confirmPassword;
     private String imageUrl;
     private String userCode;
-
 }

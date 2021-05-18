@@ -1,4 +1,4 @@
-package com.example.SpringBlogTest.Exception;
+package com.example.SpringBlogTest.exception;
 
 public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException(String message) {
