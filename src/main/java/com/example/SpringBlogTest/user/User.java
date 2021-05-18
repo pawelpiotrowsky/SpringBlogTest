@@ -17,9 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
-    private String name;
     private String email;
-    private Long number;
     private String password;
     private String confirmPassword;
     private String imageUrl;
