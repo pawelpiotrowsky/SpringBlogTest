@@ -19,7 +19,7 @@ public class HomePageController {
         this.userService = userService;
     }
 
-    @GetMapping ("/main")
+    @GetMapping ("/")
     public String getMainView() { return "main";}
 
     @GetMapping("/register")
