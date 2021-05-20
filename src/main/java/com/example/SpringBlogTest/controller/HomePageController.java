@@ -41,6 +41,10 @@ public class HomePageController {
 
     @GetMapping ("/passwordrecovery")
     public String getPasswordRecovery() {return null;}
+    @GetMapping ("/error")
+    public String getErrorView() {
+        return "error";
+    }
 
 
 
