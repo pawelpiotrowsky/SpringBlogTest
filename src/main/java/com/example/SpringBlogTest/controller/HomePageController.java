@@ -22,30 +22,6 @@ public class HomePageController {
     @GetMapping ("/")
     public String getMainView() { return "main";}
 
-    @GetMapping("/register")
-    public String getLoginView(Model model) {
-        model.addAttribute("user", new User());
-        return "register";
-    }
-
-    @PostMapping("/register")
-    public String createNewUser(User user) {
-        userService.addUser(user);
-        return "register";
-    }
-
-    @GetMapping ("/login")
-    public String getRegisterView() {
-        return "login";
-    }
-
-    @PostMapping ("/login")
-    public String loggedInView() {
-        return "main";
-    }
-
-    @GetMapping ("/passwordrecovery")
-    public String getPasswordRecovery() {return null;}
 
     @GetMapping ("/error")
     public String getErrorView() {

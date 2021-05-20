@@ -1,12 +1,21 @@
 package com.example.SpringBlogTest.configuration;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.persistence.*;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Collection;
 
 
@@ -33,5 +42,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .headers().frameOptions().disable();
+
+        public RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+                .formLogin().loginPage("/login").successHandler(new AuthenticationSuccessHandler() {
+
+            @Override
+            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, org.springframework.security.core.Authentication authentication) throws IOException, ServletException {
+                AuthenticationSuccessHandler.super.onAuthenticationSuccess(request, response, chain, authentication);
+            }
+
+            @Override
+            public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, org.springframework.security.core.Authentication authentication) throws IOException, ServletException {
+
+            }
+
+            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                                Authentication authentication) throws IOException, ServletException {
+                        redirectStrategy.sendRedirect(request, response, "/");
+                    }
+                }
     }
 }
