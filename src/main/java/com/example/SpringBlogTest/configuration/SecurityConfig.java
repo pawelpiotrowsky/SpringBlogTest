@@ -29,6 +29,13 @@ import java.util.Collection;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private UserSuccessHandler successHandler;
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/resources/**");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -50,22 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable();
 
     }
-    @Autowired
-    private UserSuccessHandler successHandler;
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**");
-    }
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/welcome").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/getEmployees").hasAnyRole("USER", "ADMIN").antMatchers("/addNewEmployee")
-                .hasAnyRole("ADMIN").anyRequest().authenticated()
-                .and().formLogin().successHandler(successHandler)
-                .loginPage("/login").permitAll().and().logout().permitAll();
-
-        http.csrf().disable();
-    }
 }
