@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class AddData implements CommandLineRunner {
 
@@ -25,8 +27,11 @@ public class AddData implements CommandLineRunner {
         bCryptPasswordEncoder = new BCryptPasswordEncoder();
         User user = new User();
         user.setEmail("kurko@gmail.com");
-        user.setPassword("{bcrypt}" + bCryptPasswordEncoder.encode( "12345"));
-        user.setConfirmPassword("{bcrypt}" + bCryptPasswordEncoder.encode("12345"));
+        user.setName("Pawel");
+        user.setPassword("12345");
+        user.setConfirmPassword("12345");
+//        user.setPassword("{bcrypt}" + bCryptPasswordEncoder.encode( "12345"));
+//        user.setConfirmPassword("{bcrypt}" + bCryptPasswordEncoder.encode("12345"));
         userService.addUser(user);
     }
 }

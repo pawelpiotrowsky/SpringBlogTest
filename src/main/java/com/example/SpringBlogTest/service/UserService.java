@@ -23,6 +23,7 @@ public class UserService {
         newUser.setUserCode(UUID.randomUUID().toString());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
+        newUser.setRole("USER");
         return userRepository.save(newUser);
     }
 
