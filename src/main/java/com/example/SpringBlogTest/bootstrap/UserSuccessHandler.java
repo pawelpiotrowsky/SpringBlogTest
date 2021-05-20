@@ -1,5 +1,8 @@
 package com.example.SpringBlogTest.bootstrap;
 
+import com.example.SpringBlogTest.repository.UserRepository;
+import com.example.SpringBlogTest.service.UserService;
+import com.example.SpringBlogTest.user.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -16,9 +19,14 @@ import java.util.Collection;
 @Component
     public class UserSuccessHandler implements AuthenticationSuccessHandler {
 
+    private final User user;
+
         private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-        @Override
+    public UserSuccessHandler(UserRepository userRepository, UserService userService, User user) {
+        this.user = user;}
+
+    @Override
         public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1,
                                             Authentication authentication) throws IOException, ServletException {
 
@@ -26,10 +34,10 @@ import java.util.Collection;
             boolean hasAdminRole = false;
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             for (GrantedAuthority grantedAuthority : authorities) {
-                if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+                if (user.getRole().equals("USER")) {
                     hasUserRole = true;
                     break;
-                } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                } else if (user.getRole().equals("ADMIN")) {
                     hasAdminRole = true;
                     break;
                 }
