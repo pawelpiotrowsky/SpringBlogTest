@@ -39,8 +39,14 @@ public class HomePageController {
         return "login";
     }
 
+    @PostMapping ("/login")
+    public String loggedInView() {
+        return "main";
+    }
+
     @GetMapping ("/passwordrecovery")
     public String getPasswordRecovery() {return null;}
+
     @GetMapping ("/error")
     public String getErrorView() {
         return "error";
