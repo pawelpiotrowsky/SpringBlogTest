@@ -34,11 +34,6 @@ public class HomePageController {
         return "register";
     }
 
-    @PostMapping ("/login")
-    public String loginUser() {
-        return "login";
-    }
-
     @GetMapping ("/login")
     public String getRegisterView() {
         return "login";
