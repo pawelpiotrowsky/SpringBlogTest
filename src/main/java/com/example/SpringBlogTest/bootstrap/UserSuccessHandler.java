@@ -1,8 +1,7 @@
 package com.example.SpringBlogTest.bootstrap;
 
-import com.example.SpringBlogTest.repository.UserRepository;
-import com.example.SpringBlogTest.service.UserService;
 import com.example.SpringBlogTest.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -20,11 +19,12 @@ import java.util.Collection;
     public class UserSuccessHandler implements AuthenticationSuccessHandler {
 
     private final User user;
-
         private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-    public UserSuccessHandler(UserRepository userRepository, UserService userService, User user) {
-        this.user = user;}
+    public UserSuccessHandler(User user) {
+        this.user = user;
+    }
+
 
     @Override
         public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1,
