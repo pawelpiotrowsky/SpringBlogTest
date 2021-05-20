@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
-    DefaultRedirectStrategy defaultRedirectStrategy;
     @GetMapping("/login")
     public String getRegisterView() {
         return "login";
