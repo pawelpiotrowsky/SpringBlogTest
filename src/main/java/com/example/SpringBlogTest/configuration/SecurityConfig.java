@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profile").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/post/{id}/**").permitAll()
                 .and()
-                .formLogin().loginPage("/login").permitAll()
+                .formLogin().successHandler(successHandler).loginPage("/login").permitAll()
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and()
