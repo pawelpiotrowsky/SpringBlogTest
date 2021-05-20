@@ -43,21 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .headers().frameOptions().disable();
 
-        public RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-                .formLogin().loginPage("/login").successHandler(new AuthenticationSuccessHandler() {
-
-            @Override
-            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, org.springframework.security.core.Authentication authentication) throws IOException, ServletException {
-                AuthenticationSuccessHandler.super.onAuthenticationSuccess(request, response, chain, authentication);
-            }
-
-            @Override
-            public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, org.springframework.security.core.Authentication authentication) throws IOException, ServletException {
-
-            }
-
-            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                Authentication authentication) throws IOException, ServletException {
+        private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+   ...
+   .formLogin()
+                .loginPage("/login")
+                .successHandler(new AuthenticationSuccessHandler() {
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                                        Authentication authentication) throws IOException, ServletException {
                         redirectStrategy.sendRedirect(request, response, "/");
                     }
                 }
