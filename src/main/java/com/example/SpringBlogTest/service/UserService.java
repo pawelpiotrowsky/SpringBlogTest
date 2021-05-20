@@ -23,8 +23,12 @@ public class UserService {
         newUser.setUserCode(UUID.randomUUID().toString());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
+        newUser.setConfirmPassword((user.getConfirmPassword()));
         newUser.setRole("USER");
-        return userRepository.save(newUser);
+        if (user.getPassword().equals(user.getConfirmPassword())){
+        return userRepository.save(newUser);}
+        // dopisac wyskakujace okienko
+        else return null;
     }
 
     public Optional<User> findUserByEmail(String email) {
