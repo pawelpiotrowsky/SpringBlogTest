@@ -19,7 +19,12 @@ public class HomePageController {
     }
 
         @GetMapping("/")
-        public String getMainView() { return "main";}
+        public String getMainView() {
+        return "main";}
+
+        @GetMapping("/main")
+        public String getIndexView() {
+        return "main";}
 
 
         @GetMapping ("/error")
@@ -27,14 +32,15 @@ public class HomePageController {
         return "error";}
 
         @GetMapping("/login")
-        public String getRegisterView() {
-            return "login";}
+        public String getLoginView() {
+        return "login";}
 
         @GetMapping("/passwordrecovery")
-        public String getPasswordRecovery() {return null;}
+        public String getPasswordRecovery() {
+        return null; }
 
         @GetMapping("/register")
-         public String getLoginView(Model model) {
+         public String getRegisterView (Model model) {
         model.addAttribute("user", new User());
         return "register"; }
 
@@ -42,7 +48,5 @@ public class HomePageController {
          public String createNewUser(User user) {
         userService.addUser(user);
         return "main"; }
-
-
 
 }

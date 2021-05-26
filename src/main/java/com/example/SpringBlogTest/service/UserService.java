@@ -21,6 +21,7 @@ public class UserService {
     public User addUser(User user){
         User newUser = new User();
         newUser.setUserCode(UUID.randomUUID().toString());
+        newUser.setName(user.getName());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
         newUser.setConfirmPassword((user.getConfirmPassword()));

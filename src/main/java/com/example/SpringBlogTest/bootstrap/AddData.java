@@ -24,14 +24,11 @@ public class AddData implements CommandLineRunner {
     }
 
     private void createNewUser() {
-        bCryptPasswordEncoder = new BCryptPasswordEncoder();
         User user = new User();
         user.setEmail("kurko@gmail.com");
-        user.setName("Pawel");
+        user.setName("kurko");
         user.setPassword("12345");
         user.setConfirmPassword("12345");
-//        user.setPassword("{bcrypt}" + bCryptPasswordEncoder.encode( "12345"));
-//        user.setConfirmPassword("{bcrypt}" + bCryptPasswordEncoder.encode("12345"));
         userService.addUser(user);
     }
 }
